@@ -2,11 +2,17 @@
 # Name:        PyReSampler Platter
 # Purpose: This file takes in an mp3 or wav file as input, upsamples or downsamples the data, and then produces an output file in the same directory with a suffix that indicates the new bitrate
 #
+# Theory: The program uses the Pydub library to implement downsampling. When the user selects "downsampling" and enters a downsampling factor, Pydub applies a low-pass filter to the audio signal to remove 
+# any high-frequency components beyond the new Nyquist frequency, and then decimates the signal by a factor equal to the downsampling factor. 
+# This means that only every Nth sample is kept, where N is the downsampling factor. The resulting signal has a lower sampling rate and is effectively a downsampled version of the original signal.
+# upsampling is achieved using linear interpolation. When upsampling, the program increases the number of samples in the audio data by a factor of factor. 
+# For each new sample, the program calculates its amplitude by linearly interpolating between the two nearest original samples.
+#
 # Author:      Jayger
 #
 # Created:     13/05/2023
 # Copyright:   (c) Jayger 2023
-# Licence:     <your licence>
+# Licence:     <License to Thrill>
 #-------------------------------------------------------------------------------
 import os
 from tkinter import filedialog
